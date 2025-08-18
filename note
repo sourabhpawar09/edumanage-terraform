@@ -1,0 +1,124 @@
+#ec2
+change the actuall actuall key with its name of ec2
+image id for ami of ec2
+#dns
+save the domain name changes accordingly
+#rds 
+pls check which one is free tier service then make use of it (t2.micro or t3.micro)
+#Route53
+pls put actuall domain name in its place in all 54 blocks abd
+#acm
+give the actual confrigration of the acm all blocks
+
+
+
+
+
+#ERRORS 
+│   on acm.tf line 17, in resource "aws_route53_record" "acm_validation":
+│   17:   name    = aws_acm_certificate.edu_manage_cert.domain_validation_options[0].resource_record_name
+│
+│ Elements of a set are identified only by their value and don't have any
+│ separate index or key to select with, so it's only possible to perform
+│ operations across all elements of the set.
+╵
+╷
+│ Error: Invalid index
+│
+│   on acm.tf line 18, in resource "aws_route53_record" "acm_validation":
+│   18:   type    = aws_acm_certificate.edu_manage_cert.domain_validation_options[0].resource_record_type
+│
+│ Elements of a set are identified only by their value and don't have any
+│ separate index or key to select with, so it's only possible to perform
+│ operations across all elements of the set.
+╵
+╷
+│ Error: Invalid index
+│
+│   on acm.tf line 20, in resource "aws_route53_record" "acm_validation":
+│   20:   records = [aws_acm_certificate.edu_manage_cert.domain_validation_options[0].resource_record_value]
+│
+│ Elements of a set are identified only by their value and don't have any
+│ separate index or key to select with, so it's only possible to perform
+│ operations across all elements of the set.
+╵
+╷
+│ Error: Reference to undeclared resource
+│
+│   on alb_target_group.tf line 6, in resource "aws_lb_target_group" "web_tg":
+│    6:   vpc_id   = aws_vpc.main.id
+│
+│ A managed resource "aws_vpc" "main" has not been declared in the root
+│ module.
+╵
+╷
+│ Error: Invalid reference
+│
+│   on nat_gateway.tf line 2, in resource "aws_eip" "nat_eip":
+│    2:   domain = vpc
+│
+│ A reference to a resource type must be followed by at least one attribute
+│ access, specifying the resource name.
+╵
+╷
+│ Error: Unsupported argument
+│
+│   on nat_gateway.tf line 10, in resource "aws_nat_gateway" "nat_gw":
+│   10:   allocationn_id = aws_eip.nat_eip.id
+│
+│ An argument named "allocationn_id" is not expected here. Did you mean
+│ "allocation_id"?
+╵
+╷
+│ Error: Reference to undeclared resource
+│
+│   on output.tf line 10, in output "rds_endpoint":
+│   10:   value       = aws_db_instance.edu_db.endpoint
+│
+│ A managed resource "aws_db_instance" "edu_db" has not been declared in
+│ the root module.
+╵
+╷
+│ Error: Reference to undeclared resource
+│
+│   on output.tf line 28, in output "launch_template_id":
+│   28:   value       = aws_launch_template.web_launch_template.id
+│
+│ A managed resource "aws_launch_template" "web_launch_template" has not
+│ been declared in the root module.
+╵
+╷
+│ Error: Reference to undeclared resource
+│
+│   on output.tf line 40, in output "route53_zone_id":
+│   40:   value       = aws_route53_zone.primary.zone_id
+│
+│ A managed resource "aws_route53_zone" "primary" has not been declared in
+│ the root module.
+╵
+╷
+│ Error: Reference to undeclared resource
+│
+│   on output.tf line 46, in output "acm_certificate_arn":
+│   46:   value       = aws_acm_certificate.cert.arn
+│
+│ A managed resource "aws_acm_certificate" "cert" has not been declared in
+│ the root module.
+╵
+╷
+│ Error: Reference to undeclared resource
+│
+│   on private_rt.tf line 6, in resource "aws_route_table" "private_rt":
+│    6:     nat_gateway_id = aws_nat_gateway.main_nat.id
+│
+│ A managed resource "aws_nat_gateway" "main_nat" has not been declared in
+│ the root module.
+
+
+ Error: Reference to undeclared resource
+│
+│   on output.tf line 40, in output "route53_zone_id":
+│   40:   value       = aws_route53_zone.primary.zone_id
+│
+│ A managed resource "aws_route53_zone" "primary" has not been declared in
+│ the root module.
