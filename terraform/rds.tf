@@ -7,7 +7,7 @@ resource "aws_db_instance" "edu_rds" {
   allocated_storage      = 20
   storage_type           = "gp2"
   username               = "admin"
-  password               = "EduManage@123"
+  password               = "EduManage123!"
   db_name                = "edudb"
   port                   = "3306"
   vpc_security_group_ids = [aws_security_group.rds_sg.id]

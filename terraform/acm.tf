@@ -1,9 +1,9 @@
 #Certificate creation
 resource "aws_acm_certificate" "edu_manage_cert" {
-  domain_name       = "edumanage.gt.tc"
+  domain_name       = "edumanage.cloudyhub.online"
   validation_method = "DNS"
 
-  subject_alternative_names = ["www.edumanage.gt.tc"]
+  subject_alternative_names = ["www.edumanage.cloudyhub.online"]
 
   tags = {
     Name = "EduManage ACM Certificate"
@@ -24,7 +24,7 @@ resource "aws_route53_record" "acm_validation" {
     }
   }
 
-  zone_id = aws_route53_zone.edu_manage_zone.id
+  zone_id = data.aws_route53_zone.edu_manage_zone.id
   name    = each.value.name
   type    = each.value.type
   records = [each.value.record]
