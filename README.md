@@ -13,6 +13,15 @@
 - [Docs](#optional-advanced-docs)
 
 
+## Key Features
+- Manage students, teachers, classes, attendance, and grades
+- Auto-scalable EC2 instances for high traffic
+- Multi-AZ RDS for high availability
+- Secure HTTPS using ACM
+- Automated infrastructure via Terraform
+- Monitoring and alerts with CloudWatch & SNS
+
+
 ## Tech Stack / AWS Services Used
 
 | Service | Purpose in EduManage |
