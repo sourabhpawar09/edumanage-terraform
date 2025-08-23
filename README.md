@@ -73,3 +73,9 @@
 
 For full deployment steps, detailed Draw.io architecture diagram, and advanced Terraform configurations, refer to the `docs` folder:
 
+
+## Architecture Overview
+
+![EduManage Architecture](docs/architecture-diagram.png)
+
+The diagram shows how EduManage handles traffic, scaling, and data flow across AWS services like EC2, RDS, ALB, S3, and VPC. Terraform automates the infrastructure.
