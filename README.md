@@ -10,7 +10,9 @@
 - [Key Features](#key-features)
 - [Tech Stack / AWS Services Used](#tech-stack--aws-services-used)
 - [Architecture Overview](#architecture-overview)
-- [Docs](#optional-advanced-docs)
+- [Quick Start](#quick-start)
+- [Docs](#optional--advanced-docs)
+
 
 
 ## Key Features
@@ -38,50 +40,48 @@
 | 📣 ![SNS](https://img.shields.io/badge/SNS-Notifications-pink) **Amazon SNS** | Sends alerts for system events (`sns.tf`) |
 | ⚙️ ![Terraform](https://img.shields.io/badge/Terraform-IaC-lightblue) **Terraform** | Infrastructure as Code for automated deployment (`provider.tf`, `outputs.tf`) |
 
----
 
 ## Architecture Overview
 
-🌐 **Users / Internet**  
-   |  
-   v  
-⚖️ **Application Load Balancer (ALB)**  
-   |  
-   ├─ 🖥️ **EC2 Auto Scaling Group**  
-   |      ├─ Managed by **Launch Template** (`launch_template.tf`)  
-   |      └─ Auto Scaling configuration (`autoscaling.tf`)  
-   |  
-   v  
-🗄️ **Amazon RDS (Multi-AZ)**  
-   └─ Stores **student, teacher, attendance, and grades data** (`rds.tf`)  
+🌐 **Users / Internet**
+      |
+      v
+⚖️ **Application Load Balancer (ALB)**
+      |
+      ├─ 🖥️ **EC2 Auto Scaling Group**
+      |     ├─ Managed by Launch Template (`launch_template.tf`)
+      |     └─ Auto Scaling configuration (`autoscaling.tf`)
+      |
+      v
+🗄️ **Amazon RDS (Multi-AZ)**
+      └─ Stores student, teacher, attendance, and grades data (`rds.tf`)
 
-☁️ **Amazon S3**  
-   └─ Stores **static assets, backups, and logs** (`s3.tf`)  
+☁️ **Amazon S3**
+      └─ Stores static assets, backups, and logs (`s3.tf`)
 
-🔐 **Security Groups**  
-   └─ Controls **inbound/outbound traffic** for EC2 and RDS (`security_groups.tf`)  
+🔐 **Security Groups**
+      └─ Controls inbound/outbound traffic for EC2 and RDS (`security_groups.tf`)
 
-🌍 **VPC & Networking**  
-   ├─ **VPC** (`vpc.tf`)  
-   ├─ **Public Route Table** (`public_rt.tf`)  
-   ├─ **Private Route Table** (`private_rt.tf`)  
-   ├─ **Internet Gateway** (`internet_gateway.tf`)  
-   └─ **NAT Gateway** (`nat_gateway.tf`)  
+🌍 **VPC & Networking**
+      ├─ VPC (`vpc.tf`)
+      ├─ Public Route Table (`public_rt.tf`)
+      ├─ Private Route Table (`private_rt.tf`)
+      ├─ Internet Gateway (`internet_gateway.tf`)
+      └─ NAT Gateway (`nat_gateway.tf`)
 
-🔑 **ACM (SSL/TLS Certificates)**  
-   └─ Secures HTTPS traffic (`acm.tf`)  
+🔑 **ACM (SSL/TLS Certificates)**
+      └─ Secures HTTPS traffic (`acm.tf`)
 
-🌐 **Route 53**  
-   └─ DNS Management & Hosted Zone (`route53_zone.tf`, `route53_record.tf`)  
+🌐 **Route 53**
+      └─ DNS Management & Hosted Zone (`route53_zone.tf`, `route53_record.tf`)
 
-📊 **CloudWatch & SNS**  
-   ├─ Monitoring EC2, ALB, and system health (`cloudwatch.tf`)  
-   └─ Alerts via SNS (`sns.tf`)  
+📊 **CloudWatch & SNS**
+      ├─ Monitoring EC2, ALB, and system health (`cloudwatch.tf`)
+      └─ Alerts via SNS (`sns.tf`)
 
-⚙️ **Terraform**  
-   └─ Infrastructure as Code for automated deployment and outputs (`provider.tf`, `outputs.tf`)
+⚙️ **Terraform**
+      └─ Infrastructure as Code for automated deployment and outputs (`provider.tf`, `outputs.tf`)
 
----
 
 ## Optional / Advanced Docs
 
@@ -89,11 +89,12 @@ For full deployment steps, detailed Draw.io architecture diagram, and advanced T
 
 
 ## Quick Start
-Clone the repo and deploy infrastructure using Terraform:
+
+Clone the repo and deploy the infrastructure using Terraform:
 
 ```bash
 git clone <repo-url>
 cd EduManage-terraform
-terraform init
-terraform plan
-terraform apply
+terraform init          # Initialize Terraform
+terraform plan          # Preview resources to be created
+terraform apply         # Apply and deploy infrastructure
