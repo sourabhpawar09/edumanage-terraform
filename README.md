@@ -35,6 +35,6 @@
 | ![CloudWatch](https://img.shields.io/badge/CloudWatch-%F0%9F%93%8A-lightgrey) **CloudWatch** | Monitoring EC2, ALB, and overall system health (`cloudwatch.tf`) |
 | ![SNS](https://img.shields.io/badge/SNS-%F0%9F%93%A3-pink) **Amazon SNS** | Sends notifications/alerts for system events and alarms (linked with CloudWatch) |
 | ![Terraform](https://img.shields.io/badge/Terraform-%E2%9A%99%EF%B8%8F-blue) **Terraform** | Infrastructure as Code for automated deployment and management (`provider.tf`, `outputs.tf`) |
-| ⚙️ **Launch Template** | Defines EC2 instance configuration for Auto Scaling (`launch_template.tf`) |
+| ![LaunchTemplate](https://img.shields.io/badge/Launch%20Template-%E2%9A%99%EF%B8%8F-green) **Launch Template** | Defines EC2 instance configuration for Auto Scaling (`launch_template.tf`) |
 
 
