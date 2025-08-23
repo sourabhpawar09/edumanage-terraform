@@ -38,3 +38,6 @@
 | ![LaunchTemplate](https://img.shields.io/badge/Launch%20Template-%E2%9A%99%EF%B8%8F-green) **Launch Template** | Defines EC2 instance configuration for Auto Scaling (`launch_template.tf`) |
 
 
+## Architecture Overview
+
+![EduManage Architecture](docs/architecture-diagram.png)
