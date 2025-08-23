@@ -6,7 +6,12 @@
 
 **EduManage** is a **fully cloud-native and scalable Student Management System** designed to efficiently manage **students, teachers, classes, attendance, and grades**. This project demonstrates a **real-world AWS deployment**, following best practices for **security, scalability, and maintainability**.
 
----
+## Table of Contents
+- [Key Features](#key-features)
+- [Tech Stack / AWS Services Used](#tech-stack--aws-services-used)
+- [Architecture Overview](#architecture-overview)
+- [Docs](#optional-advanced-docs)
+
 
 ## Tech Stack / AWS Services Used
 
@@ -74,8 +79,12 @@
 For full deployment steps, detailed Draw.io architecture diagram, and advanced Terraform configurations, refer to the `docs` folder:
 
 
-## Architecture Overview
+## Quick Start
+Clone the repo and deploy infrastructure using Terraform:
 
-![EduManage Architecture](docs/architecture-diagram.png)
-
-The diagram shows how EduManage handles traffic, scaling, and data flow across AWS services like EC2, RDS, ALB, S3, and VPC. Terraform automates the infrastructure.
+```bash
+git clone <repo-url>
+cd EduManage-terraform
+terraform init
+terraform plan
+terraform apply
