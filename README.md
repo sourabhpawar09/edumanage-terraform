@@ -43,44 +43,42 @@
 
 ## Architecture Overview
 
-🌐 **Users / Internet**
-      |
-      v
-⚖️ **Application Load Balancer (ALB)**
-      |
-      ├─ 🖥️ **EC2 Auto Scaling Group**
-      |     ├─ Managed by Launch Template (`launch_template.tf`)
-      |     └─ Auto Scaling configuration (`autoscaling.tf`)
-      |
-      v
-🗄️ **Amazon RDS (Multi-AZ)**
-      └─ Stores student, teacher, attendance, and grades data (`rds.tf`)
+**🌐 Users / Internet**  
+&nbsp;&nbsp;↓  
+**⚖️ Application Load Balancer (ALB)**  
+&nbsp;&nbsp;├─ **🖥️ EC2 Auto Scaling Group**  
+&nbsp;&nbsp;&nbsp;&nbsp;├─ Managed by **Launch Template** (`launch_template.tf`)  
+&nbsp;&nbsp;&nbsp;&nbsp;└─ Auto Scaling configuration (`autoscaling.tf`)  
+&nbsp;&nbsp;↓  
+**🗄️ Amazon RDS (Multi-AZ)**  
+&nbsp;&nbsp;└─ Stores **student, teacher, attendance, and grades data** (`rds.tf`)  
 
-☁️ **Amazon S3**
-      └─ Stores static assets, backups, and logs (`s3.tf`)
+**☁️ Amazon S3**  
+&nbsp;&nbsp;└─ Stores **static assets, backups, and logs** (`s3.tf`)  
 
-🔐 **Security Groups**
-      └─ Controls inbound/outbound traffic for EC2 and RDS (`security_groups.tf`)
+**🔐 Security Groups**  
+&nbsp;&nbsp;└─ Controls **inbound/outbound traffic** for EC2 and RDS (`security_groups.tf`)  
 
-🌍 **VPC & Networking**
-      ├─ VPC (`vpc.tf`)
-      ├─ Public Route Table (`public_rt.tf`)
-      ├─ Private Route Table (`private_rt.tf`)
-      ├─ Internet Gateway (`internet_gateway.tf`)
-      └─ NAT Gateway (`nat_gateway.tf`)
+**🌍 VPC & Networking**  
+&nbsp;&nbsp;├─ **VPC** (`vpc.tf`)  
+&nbsp;&nbsp;├─ **Public Route Table** (`public_rt.tf`)  
+&nbsp;&nbsp;├─ **Private Route Table** (`private_rt.tf`)  
+&nbsp;&nbsp;├─ **Internet Gateway** (`internet_gateway.tf`)  
+&nbsp;&nbsp;└─ **NAT Gateway** (`nat_gateway.tf`)  
 
-🔑 **ACM (SSL/TLS Certificates)**
-      └─ Secures HTTPS traffic (`acm.tf`)
+**🔑 ACM (SSL/TLS Certificates)**  
+&nbsp;&nbsp;└─ Secures **HTTPS traffic** (`acm.tf`)  
 
-🌐 **Route 53**
-      └─ DNS Management & Hosted Zone (`route53_zone.tf`, `route53_record.tf`)
+**🌐 Route 53**  
+&nbsp;&nbsp;└─ DNS Management & Hosted Zone (`route53_zone.tf`, `route53_record.tf`)  
 
-📊 **CloudWatch & SNS**
-      ├─ Monitoring EC2, ALB, and system health (`cloudwatch.tf`)
-      └─ Alerts via SNS (`sns.tf`)
+**📊 CloudWatch & SNS**  
+&nbsp;&nbsp;├─ Monitoring EC2, ALB, and system health (`cloudwatch.tf`)  
+&nbsp;&nbsp;└─ Alerts via SNS (`sns.tf`)  
 
-⚙️ **Terraform**
-      └─ Infrastructure as Code for automated deployment and outputs (`provider.tf`, `outputs.tf`)
+**⚙️ Terraform**  
+&nbsp;&nbsp;└─ Infrastructure as Code for automated deployment and outputs (`provider.tf`, `outputs.tf`)
+
 
 
 ## Optional / Advanced Docs
