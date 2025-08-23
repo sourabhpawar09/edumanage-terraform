@@ -1,4 +1,4 @@
-/*
+
 resource "aws_route53_zone" "edu_manage_zone" {
   name = "cloudyhub.online"
 
@@ -7,4 +7,4 @@ resource "aws_route53_zone" "edu_manage_zone" {
   }
 
 }
-*/
+
