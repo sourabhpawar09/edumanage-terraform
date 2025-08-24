@@ -22,7 +22,7 @@ This document provides a **detailed explanation** of the project, including:
 
 ✦ Future enhancements for making the system enterprise-ready
 
-✦ Architecture diagram reference
+✦ Architecture reference
 
 ---
 
@@ -61,7 +61,9 @@ This document provides a **detailed explanation** of the project, including:
    - [7.8 Destroy Infrastructure (Optional)](#78-destroy-infrastructure-optional)
    - [7.9 Verification Tools (Optional)](#79-verification-tools-optional)
    - [7.10 Cost Awareness (Optional)](#710-cost-awareness-optional)
-
+8. [Cost Considerations & Optimizations](#cost-considerations--optimizations)
+9. [Future Enhancements](#future-enhancements)
+10. [Architecture Diagram Reference](#architecture-diagram-reference)
 
 
 
@@ -388,7 +390,7 @@ Automated pipelines reduce human error, speed up deployments, and allow safe rol
 **Rationale:**  
 Performing these post-deployment checks ensures that all components are **operational, secure, and properly configured** before moving to production.
 
-### 7.8) Destroy Infrastructure (Optional)
+### 7.8) Destroy Infrastructure 
 After testing or if you want to avoid unnecessary costs, you can remove all deployed resources:
 
 ```bash
@@ -412,6 +414,48 @@ Keep track of **AWS usage and costs** to avoid surprises:
 - Remove or stop resources when not in use to minimize costs.
 
 ---
+
+![Cost Considerations & Optimizations](https://img.shields.io/badge/Cost-Optimizations-yellow?style=for-the-badge&logo=aws&logoColor=white)
+
+### Cost Considerations & Optimizations
+- **Right-Sizing:** Choose EC2 instance types based on workload; avoid over-provisioning.  
+- **Auto Scaling:** Scale EC2 dynamically to handle peaks and save costs during idle times.  
+- **S3 Lifecycle Policies:** Move older backups to cheaper storage classes (IA/Glacier).  
+- **On-Demand vs Reserved Resources:** Use on-demand for testing, reserved or spot for long-term cost reduction.  
+- **Destroy Non-Prod Resources:** Use `terraform destroy` after testing to avoid unnecessary charges.  
+
+**Rationale:**  
+Ensures EduManage runs efficiently, avoids AWS cost surprises, and leverages free-tier wherever possible.  
+
+---
+
+![Future Enhancements](https://img.shields.io/badge/Future-Enhancements-blue?style=for-the-badge&logo=terraform&logoColor=white)
+
+### Future Enhancements
+- **CI/CD Pipeline Integration:** Automate deployments with CodePipeline, CodeBuild, CodeDeploy.  
+- **Monitoring Automation:** Advanced dashboards, anomaly detection, proactive alerts.  
+- **Multi-Region Deployment:** High availability across regions for enterprise readiness.  
+- **Terraform Module Reuse:** Standardize and reuse infrastructure modules across projects.  
+- **Application Layer Development:** Add real student management app on top of the infra.  
+
+**Rationale:**  
+Provides a roadmap to take EduManage from infrastructure-only to a fully enterprise-ready cloud application.  
+
+---
+
+![Architecture](https://img.shields.io/badge/Architecture-Diagram-green?style=for-the-badge&logo=draw.io&logoColor=white)
+
+### Architecture Diagram Reference
+- The EduManage architecture is a **3-tier design** with:  
+  1. **Presentation Layer:** ALB in public subnets.  
+  2. **Application Layer:** EC2 Auto Scaling in private subnets.  
+  3. **Database Layer:** RDS MySQL Multi-AZ in isolated subnets.  
+  4. **Storage Layer:** S3 buckets for static assets & logs.  
+  5. **Monitoring & Security:** CloudWatch, SNS, IAM, Security Groups.  
+
+**> For detailed architecture explanation and rationale, refer to [Section 3 – Architecture Breakdown & Rationale](#3-architecture-breakdown--rationale):**
+
+
 
 
 
