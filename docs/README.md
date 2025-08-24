@@ -28,7 +28,7 @@ This document provides a **detailed explanation** of the project, including:
 
 ## Table of Contents
 
-1. [Real-World Problem](#1-real-world-problem)
+![Real-World Problem](https://img.shields.io/badge/1-Real--World--Problem-blue?style=for-the-badge)
 2. [Design Objectives](#2-design-objectives)
 3. [Architecture Breakdown & Rationale](#3-architecture-breakdown--rationale)
    - [3.1 Networking Layer (VPC & Subnets)](#31-networking-layer-vpc--subnets)
@@ -401,7 +401,7 @@ After deploying the infrastructure, you can use the following tools to **verify 
 - **`curl` / `wget`:** Test application endpoints through ALB or HTTPS.
 - **`dig` / `nslookup`:** Validate DNS resolution and hosted zone configuration.
 
----
+
 
 ### 7.10) Cost Awareness (Optional)
 Keep track of **AWS usage and costs** to avoid surprises:
