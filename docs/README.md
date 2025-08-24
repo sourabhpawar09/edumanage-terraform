@@ -29,8 +29,8 @@ This document provides a **detailed explanation** of the project, including:
 
 
 ---
+<h2 style="color:#1E90FF;">1) Real-World Problem</h2>
 
-## 1) Real-World Problem
 
 Educational institutions handle sensitive, high-volume data (students, teachers, classes, attendance, exams, fees) and need secure, always-available access. Traditional/on-prem systems typically suffer from:
 - Limited scalability during peaks (admissions, results).
@@ -170,6 +170,8 @@ Implements defense-in-depth, least privilege, and compliance-ready design.
 
 **Rationale:**  
 Ensures disaster recovery, long-term durability, and infra reliability.
+
+---
 
 ## 4) Security Considerations & Best Practices
 
