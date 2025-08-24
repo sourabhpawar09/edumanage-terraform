@@ -453,7 +453,7 @@ Provides a roadmap to take EduManage from infrastructure-only to a fully enterpr
   4. **Storage Layer:** S3 buckets for static assets & logs.  
   5. **Monitoring & Security:** CloudWatch, SNS, IAM, Security Groups.  
 
-**> For detailed architecture explanation and rationale, refer to [Section 3 – Architecture Breakdown & Rationale](#3-architecture-breakdown--rationale):**
+** For detailed architecture explanation and rationale, refer to [Section 3 – Architecture Breakdown & Rationale](#3-architecture-breakdown--rationale):**
 
 
 
