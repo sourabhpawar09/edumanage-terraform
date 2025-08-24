@@ -28,9 +28,9 @@ This document provides a **detailed explanation** of the project, including:
 ## Table of Contents
 
 [![1) Real-World Problem](https://img.shields.io/badge/1-Real--World--Problem-blue?style=for-the-badge&logo=bug&logoColor=white)](#1-real-world-problem)  
-[![2) Design Objectives](https://img.shields.io/badge/2-Design--Objectives-green?style=for-the-badge&logo=terraform&logoColor=white)](#2-design-objectives)  
+[![2) Design Objectives](https://img.shields.io/badge/2-Design--Objectives-green?style=for-the-badge&logoColor=white)](#2-design-objectives)  
 [![3) Architecture Breakdown & Rationale](https://img.shields.io/badge/3-Architecture--Breakdown-orange?style=for-the-badge&logo=aws&logoColor=white)](#3-architecture-breakdown--rationale)  
-   - [3.1 Networking Layer (VPC & Subnets)](#31-networking-layer-vpc--subnets)
+   - 3.1 Networking Layer (VPC & Subnets)(#31-networking-layer-vpc--subnets)
    - [3.2 Compute Layer (EC2 & Auto Scaling)](#32-compute-layer-ec2--auto-scaling)
    - [3.3 Load Balancing Layer (ALB)](#33-load-balancing-layer-alb)
    - [3.4 Database Layer (Amazon RDS)](#34-database-layer-amazon-rds)
