@@ -197,3 +197,87 @@ EduManage follows **security-by-design principles** to ensure sensitive student 
 
 **Rationale:**  
 Implementing security best practices at network, compute, data, and access levels ensures EduManage is **resilient against attacks**, compliant with standards, and ready for enterprise deployment.
+
+---
+
+![5) Backup & Recovery](https://img.shields.io/badge/5-Backup--Recovery-red?style=for-the-badge&logo=aws&logoColor=white)
+
+EduManage implements **robust backup and disaster recovery mechanisms** to ensure business continuity and data durability.
+
+### 5.1) Database Backups
+- **RDS Automated Backups:** Daily snapshots with retention of 7–30 days.  
+- **Manual Snapshots (Optional):** Before major changes or upgrades for point-in-time recovery.  
+- **Multi-AZ Deployment:** RDS replicas in multiple AZs provide failover capability.
+
+### 5.2) Storage Backups
+- **S3 Versioning:** Protects against accidental deletion or overwrites.  
+- **Lifecycle Policies:** Moves older backups to cheaper storage classes (Glacier/IA).  
+- **Cross-Region Replication (Optional):** Extra protection against regional failures.
+
+### 5.3) Infrastructure State
+- **Terraform State:** Stored in **S3** with **DynamoDB locking** to prevent corruption.  
+- **Version Control:** Keeps state history and allows safe rollbacks.
+
+**Rationale:**  
+A comprehensive backup and recovery strategy ensures **data durability, disaster recovery readiness**, and **minimal downtime** for students and staff.
+
+---
+
+![6) Tech Stack & Tools Used](https://img.shields.io/badge/6-Tech--Stack--Tools-blue?style=for-the-badge&logo=devicon&logoColor=white)
+
+EduManage leverages a combination of **AWS cloud services, DevOps tools, and IaC technologies** to build a scalable, secure, and maintainable system.
+
+### 6.1) Cloud Infrastructure
+- **Amazon VPC:** Network isolation and subnet segmentation.  
+- **EC2:** Compute instances for application tier.  
+- **RDS (MySQL, Multi-AZ):** Managed relational database.  
+- **S3:** Object storage for static assets and logs.  
+- **ALB:** Load balancing and TLS termination.  
+- **Route 53:** DNS management for custom domains.  
+- **ACM:** TLS certificates for HTTPS endpoints.  
+- **CloudWatch:** Metrics, logs, alarms, and dashboards.  
+- **IAM & KMS:** Security, access control, and encryption.
+
+### 6.2) Infrastructure as Code
+- **Terraform:** Declarative IaC for reproducible infrastructure deployment.  
+- **S3 + DynamoDB Backend:** Remote state storage with locking for team collaboration.
+
+### 6.3) Application Stack
+- **Linux (Amazon Linux 2/Ubuntu):** Operating system for EC2 instances.  
+- **Web Server (Apache/Nginx):** Serves application traffic.  
+- **Programming Language & Framework:** (Add if specific language used, e.g., Java Spring Boot or Node.js).  
+- **CI/CD Tools:** (Optional: CodePipeline, CodeBuild, CodeDeploy if used).
+
+**Rationale:**  
+Using this tech stack ensures **automation, scalability, security, and operational visibility**, making the system production-ready and maintainable.
+
+---
+
+![7) Step-by-Step Deployment Instructions](https://img.shields.io/badge/7-Deployment--Steps-yellow?style=for-the-badge&logo=terraform&logoColor=white)
+
+EduManage can be deployed end-to-end on AWS using **Terraform**. The following steps provide a **detailed, reproducible guide**:
+
+### 7.1) Prerequisites
+- **AWS Account:** With sufficient permissions to create VPC, EC2, RDS, S3, IAM, Route 53, ACM.  
+- **Terraform Installed:** Version >= 1.5.7.  
+- **AWS CLI Configured:** Credentials for the target region (ap-south-1).  
+- **Git:** For cloning repo and version control.
+
+### 7.2) Setup Repository
+1. Clone the repository:  
+   ```bash
+   git clone <repo-url>
+   cd EduManage-terraform
+
+### 7.3) Initialize Terraform
+```bash
+terraform init
+```
+
+![7.4) Plan Infrastructure](https://img.shields.io/badge/7.4-Plan--Infrastructure-blue?style=for-the-badge&logo=terraform&logoColor=white)
+
+After initializing Terraform, the next step is to **validate and plan your infrastructure**.
+
+```bash
+terraform plan
+```
