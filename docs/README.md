@@ -121,6 +121,8 @@ Educational institutions handle sensitive, high-volume data (students, teachers,
   4. **Storage Layer:** S3 buckets for static assets & logs.  
   5. **Monitoring & Security:** CloudWatch, SNS, IAM, Security Groups.  
 
+- [Architecture Diagram](architecture-diagram.txt) – 3-tier architecture diagram. 
+
 ### 3.1) Networking Layer (VPC & Subnets)
 - **VPC (10.0.0.0/16):** Isolates EduManage workloads from other AWS accounts/projects. Provides CIDR space for subnets.
 - **Public Subnets (2 AZs):** Host Application Load Balancer (ALB) and NAT Gateways. Required for internet-facing entry points.
@@ -459,18 +461,16 @@ Provides a roadmap to take EduManage from infrastructure-only to a fully enterpr
 ---
 
 
----
-
 ## 📚 References / Docs
 
 For detailed supporting documentation, diagrams, and screenshots, see the following:
 
-- [Architecture Diagram](architecture-diagram.txt) – Text-based 3-tier architecture diagram.  
+- [Architecture Diagram](architecture-diagram.txt) – 3-tier architecture diagram.  
 - [Deployment Steps](deployment-steps.md) – Step-by-step Terraform deployment instructions (optional separated file).  
 - [Screenshots](screenshots/) – Folder containing screenshots of deployed AWS resources.
 
 ---
-
+---
 
 
 
