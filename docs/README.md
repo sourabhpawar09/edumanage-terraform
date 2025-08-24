@@ -5,14 +5,23 @@ The project demonstrates how to design and implement a **production-grade 3-tier
 
 This document provides a **detailed explanation** of the project, including:  
 ✦ The real-world problem it solves
+
 ✦ Design objectives and goals
+
 ✦ Architecture breakdown with reasoning behind each component
+
 ✦ Security considerations & best practices
+
 ✦ Backup & recovery strategy
+
 ✦ Tech Stack & tools used
+
 ✦ Step-by-step deployment instructions
+
 ✦ Cost considerations and optimizations
+
 ✦ Future enhancements for making the system enterprise-ready
+
 ✦ Architecture diagram reference
 
 
