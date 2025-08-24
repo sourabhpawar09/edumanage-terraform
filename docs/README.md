@@ -42,7 +42,7 @@ This document provides a **detailed explanation** of the project, including:
    - 3.9 Security Layer (IAM & Security Groups)
    - 3.10 Backup & Recovery
 
-- [![4) Security Considerations & Best Practices](https://img.shields.io/badge/4-Security--Best--Practices-purple?style=for-the-badge&logo=lock&logoColor=white)](#4-security-considerations--best-practices)  
+[![4) Security Considerations & Best Practices](https://img.shields.io/badge/4-Security--Best--Practices-purple?style=for-the-badge&logo=lock&logoColor=white)](#4-security-considerations--best-practices)  
 [![5) Backup & Recovery](https://img.shields.io/badge/5-Backup--Recovery-red?style=for-the-badge&logo=aws&logoColor=white)](#5-backup--recovery)  
 [![6) Tech Stack & Tools Used](https://img.shields.io/badge/6-Tech--Stack--Tools-blue?style=for-the-badge&logo=devicon&logoColor=white)](#6-tech-stack--tools-used)  
 [![7) Step-by-Step Deployment Instructions](https://img.shields.io/badge/7-Deployment--Steps-yellow?style=for-the-badge&logoColor=white)](#7-step-by-step-deployment-instructions)  
