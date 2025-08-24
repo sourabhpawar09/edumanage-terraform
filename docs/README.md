@@ -170,3 +170,27 @@ Implements defense-in-depth, least privilege, and compliance-ready design.
 
 **Rationale:**  
 Ensures disaster recovery, long-term durability, and infra reliability.
+
+## 4) Security Considerations & Best Practices
+
+EduManage follows **security-by-design principles** to ensure sensitive student and institutional data is protected at all times.
+
+### 4.1) Network Security
+- **Private Subnets for App & DB:** Prevents direct internet access; only ALB and NAT can reach them.
+- **Security Groups:** Least-privilege rules; only necessary ports open (HTTP/HTTPS for ALB, MySQL for DB).
+- **NACLs (Optional):** Extra subnet-level filtering at the subnet level.
+
+### 4.2) Data Protection
+- **Encryption at Rest:** S3 buckets use SSE-S3/KMS; RDS uses AES-256 encryption.
+- **Encryption in Transit:** TLS/HTTPS enforced via ALB and ACM certificates.
+
+### 4.3) Identity & Access Management
+- **IAM Roles for EC2:** Grants minimum required permissions for app to access S3, CloudWatch, etc.
+- **IAM Policies:** Fine-grained access controls for Terraform deployments.
+
+### 4.4) Logging & Monitoring
+- **CloudWatch Logs & Alarms:** Track suspicious activity, resource usage, and failures.
+- **Audit Trails:** AWS CloudTrail enabled for all critical actions.
+
+**Rationale:**  
+Implementing security best practices at network, compute, data, and access levels ensures EduManage is **resilient against attacks**, compliant with standards, and ready for enterprise deployment.
