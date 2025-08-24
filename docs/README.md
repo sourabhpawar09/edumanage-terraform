@@ -24,6 +24,43 @@ This document provides a **detailed explanation** of the project, including:
 
 ✦ Architecture diagram reference
 
+---
+
+## Table of Contents
+
+1. [Real-World Problem](#1-real-world-problem)
+2. [Design Objectives](#2-design-objectives)
+3. [Architecture Breakdown & Rationale](#3-architecture-breakdown--rationale)
+   - [3.1 Networking Layer (VPC & Subnets)](#31-networking-layer-vpc--subnets)
+   - [3.2 Compute Layer (EC2 & Auto Scaling)](#32-compute-layer-ec2--auto-scaling)
+   - [3.3 Load Balancing Layer (ALB)](#33-load-balancing-layer-alb)
+   - [3.4 Database Layer (Amazon RDS)](#34-database-layer-amazon-rds)
+   - [3.5 Storage Layer (S3)](#35-storage-layer-s3)
+   - [3.6 DNS & TLS (Route 53 + ACM)](#36-dns--tls-route-53--acm)
+   - [3.7 Observability (CloudWatch)](#37-observability-cloudwatch)
+   - [3.8 IaC & Repeatability (Terraform)](#38-iac--repeatability-terraform)
+   - [3.9 Security Layer (IAM & Security Groups)](#39-security-layer-iam--security-groups)
+   - [3.10 Backup & Recovery](#310-backup--recovery)
+4. [Security Considerations & Best Practices](#4-security-considerations--best-practices)
+5. [Backup & Recovery](#5-backup--recovery)
+6. [Tech Stack & Tools Used](#6-tech-stack--tools-used)
+7. [Step-by-Step Deployment Instructions](#7-step-by-step-deployment-instructions)
+   - [7.1 Prerequisites](#71-prerequisites)
+   - [7.2 Setup Repository](#72-setup-repository)
+   - [7.3 Initialize Terraform](#73-initialize-terraform)
+   - [7.4 Plan Infrastructure](#74-plan-infrastructure)
+   - [7.5 Apply Infrastructure](#75-apply-infrastructure)
+   - [7.6 Post-Deployment Checks](#76-post-deployment-checks)
+     - [7.6.1 EC2 & ALB](#761-ec2--alb)
+     - [7.6.2 RDS](#762-rds)
+     - [7.6.3 S3 Buckets](#763-s3-buckets)
+     - [7.6.4 Route 53 & ACM](#764-route-53--acm)
+     - [7.6.5 CloudWatch, Monitoring & Alerts](#765-cloudwatch-monitoring--alerts)
+     - [7.6.6 Optional Functional Checks](#766-optional-functional-checks)
+   - [7.7 Optional CI/CD & Monitoring Setup](#77-optional-cicd--monitoring-setup)
+   - [7.8 Destroy Infrastructure (Optional)](#78-destroy-infrastructure-optional)
+   - [7.9 Verification Tools (Optional)](#79-verification-tools-optional)
+   - [7.10 Cost Awareness (Optional)](#710-cost-awareness-optional)
 
 
 
@@ -225,7 +262,7 @@ A comprehensive backup and recovery strategy ensures **data durability, disaster
 
 ![6) Tech Stack & Tools Used](https://img.shields.io/badge/6-Tech--Stack--Tools-blue?style=for-the-badge&logo=devicon&logoColor=white)
 
-EduManage leverages a combination of **AWS cloud services, DevOps tools, and IaC technologies** to build a scalable, secure, and maintainable system.
+EduManage leverages a combination of **AWS cloud services and IaC technologies** to build a scalable, secure, and maintainable system.
 
 ### 6.1) Cloud Infrastructure
 - **Amazon VPC:** Network isolation and subnet segmentation.  
@@ -242,14 +279,15 @@ EduManage leverages a combination of **AWS cloud services, DevOps tools, and IaC
 - **Terraform:** Declarative IaC for reproducible infrastructure deployment.  
 - **S3 + DynamoDB Backend:** Remote state storage with locking for team collaboration.
 
-### 6.3) Application Stack
+### 6.3) Application Stack (Placeholder)
 - **Linux (Amazon Linux 2/Ubuntu):** Operating system for EC2 instances.  
-- **Web Server (Apache/Nginx):** Serves application traffic.  
-- **Programming Language & Framework:** (Add if specific language used, e.g., Java Spring Boot or Node.js).  
-- **CI/CD Tools:** (Optional: CodePipeline, CodeBuild, CodeDeploy if used).
+- **Web Server (Apache/Nginx):** Prepared for serving application traffic in future.  
+- **Programming Language & Framework:** Not implemented yet (pure infra project).  
+- **CI/CD Tools:** Not implemented yet.
 
 **Rationale:**  
 Using this tech stack ensures **automation, scalability, security, and operational visibility**, making the system production-ready and maintainable.
+
 
 ---
 
@@ -268,7 +306,7 @@ EduManage can be deployed end-to-end on AWS using **Terraform**. The following s
    ```bash
    git clone <repo-url>
    cd EduManage-terraform
-
+   ```
 ### 7.3) Initialize Terraform
 ```bash
 terraform init
@@ -286,7 +324,6 @@ Once the plan is verified, apply the infrastructure changes:
 
 ```bash
 terraform apply
-
 ```
 
 ### 7.6) Post-Deployment Checks
@@ -297,23 +334,82 @@ After applying the infrastructure, perform these checks to ensure everything is 
 - Verify EC2 instances are **running** and part of the Auto Scaling group.
 - Check that EC2 instances are **registered with the ALB target groups**.
 - Confirm that the ALB is **routing traffic** properly.
+- Test **high availability** by simulating an instance failure and observing Auto Scaling replacement.
+- Check **security groups** to ensure only ALB traffic is allowed to EC2 instances.
 
-### 7.6.2) RDS
+#### 7.6.2) RDS
 - Ensure RDS is in **Multi-AZ deployment**.
 - Verify RDS is **accessible only from the private app subnets**.
 - Check parameter and option groups are correctly applied.
+- Test **database connectivity** from an EC2 instance in the private subnet.
+- Optionally, simulate **failover** by rebooting the primary instance and observing the automatic switch.
 
-### 7.6.3) S3 Buckets
+#### 7.6.3) S3 Buckets
 - Confirm **versioning** and **encryption** are enabled.
 - Test access permissions for EC2 and IAM roles.
+- Upload and retrieve a test file to validate **read/write operations**.
+- Check **lifecycle rules** (if configured) for object management.
 
-### 7.6.4) Route 53 & ACM
+#### 7.6.4) Route 53 & ACM
 - Validate **DNS records** for your hosted zone.
 - Confirm ACM **certificate status** is issued and attached to ALB.
+- Test **HTTPS endpoint** to verify TLS termination and redirection (if configured).
+- Optional: Use `dig` or `nslookup` to ensure proper domain resolution.
 
-### 7.6.5) Optional Testing
+
+#### 7.6.5) CloudWatch, Monitoring & Alerts
+- **CloudWatch Metrics & Logs:** Verify that EC2, RDS, ALB, and S3 metrics are being captured and pushed correctly.  
+- **Alarms:** Ensure all CloudWatch alarms are active and monitoring CPU utilization, disk space, latency, and request errors.  
+- **Dashboards:** Review dashboards for expected resource utilization and system health.  
+- **Notifications & Audit Trails:** Optionally configure SNS to send alerts for threshold breaches and CloudTrail to track infrastructure changes and access events.
+
+
+#### 7.6.6) Optional Functional Checks
 - Test application access via **ALB DNS** or placeholder domain.
-- Check logs in **CloudWatch** for any errors.
+- Check that **auto scaling triggers** correctly under simulated load.
+- Confirm that **backup snapshots** for RDS are created successfully.
+- Test **S3 object retrieval** and permissions.
+
+### 7.7) Optional CI/CD & Monitoring Setup (Optional)
+
+Although EduManage currently focuses on infrastructure deployment, you can extend it with **CI/CD pipelines and enhanced monitoring** for production readiness.
+
+- **AWS CodePipeline:** Automates deployment of application code or infrastructure changes.  
+- **AWS CodeBuild:** Builds and tests your application or Terraform modules.  
+- **AWS CodeDeploy:** Deploys changes to EC2 instances or Auto Scaling groups.  
+- **Version Control Integration:** Connects GitHub or CodeCommit repositories to trigger pipelines on commits.  
+
+**Benefits:**  
+Automated pipelines reduce human error, speed up deployments, and allow safe rollbacks.
+
 
 **Rationale:**  
 Performing these post-deployment checks ensures that all components are **operational, secure, and properly configured** before moving to production.
+
+### 7.8) Destroy Infrastructure (Optional)
+After testing or if you want to avoid unnecessary costs, you can remove all deployed resources:
+
+```bash
+terraform destroy
+
+```
+
+### 7.9) Verification Tools (Optional)
+After deploying the infrastructure, you can use the following tools to **verify that everything is working correctly**:
+
+- **AWS CLI:** Check EC2 instances, RDS status, S3 buckets, and ALB health.
+- **`curl` / `wget`:** Test application endpoints through ALB or HTTPS.
+- **`dig` / `nslookup`:** Validate DNS resolution and hosted zone configuration.
+
+---
+
+### 7.10) Cost Awareness (Optional)
+Keep track of **AWS usage and costs** to avoid surprises:
+
+- Monitor free-tier limits or ongoing charges while resources are running.
+- Remove or stop resources when not in use to minimize costs.
+
+---
+
+
+
