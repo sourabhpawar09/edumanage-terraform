@@ -29,7 +29,8 @@ This document provides a **detailed explanation** of the project, including:
 
 
 ---
-![1) Real-World Problem](https://img.shields.io/badge/1-Real--World--Problem-red?style=for-the-badge&logo=bug&logoColor=white)
+![1) Real-World Problem](https://img.shields.io/badge/Step%201-Real--World--Problem-#FF4500?style=for-the-badge&logo=bug&logoColor=white)
+
 
 
 
