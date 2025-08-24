@@ -293,7 +293,7 @@ terraform apply
 
 After applying the infrastructure, perform these checks to ensure everything is deployed correctly:
 
-####S 7.6.1) EC2 & ALB
+#### 7.6.1) EC2 & ALB
 - Verify EC2 instances are **running** and part of the Auto Scaling group.
 - Check that EC2 instances are **registered with the ALB target groups**.
 - Confirm that the ALB is **routing traffic** properly.
