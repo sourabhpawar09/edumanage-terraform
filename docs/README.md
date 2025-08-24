@@ -22,50 +22,31 @@ This document provides a **detailed explanation** of the project, including:
 
 ✦ Future enhancements for making the system enterprise-ready
 
-✦ Architecture reference
 
 ---
 
 ## Table of Contents
 
-1. [Real-World Problem](#1-real-world-problem)
-2. [Design Objectives](#2-design-objectives)
-3. [Architecture Breakdown & Rationale](#3-architecture-breakdown--rationale)
-   - [3.1 Networking Layer (VPC & Subnets)](#31-networking-layer-vpc--subnets)
-   - [3.2 Compute Layer (EC2 & Auto Scaling)](#32-compute-layer-ec2--auto-scaling)
-   - [3.3 Load Balancing Layer (ALB)](#33-load-balancing-layer-alb)
-   - [3.4 Database Layer (Amazon RDS)](#34-database-layer-amazon-rds)
-   - [3.5 Storage Layer (S3)](#35-storage-layer-s3)
-   - [3.6 DNS & TLS (Route 53 + ACM)](#36-dns--tls-route-53--acm)
-   - [3.7 Observability (CloudWatch)](#37-observability-cloudwatch)
-   - [3.8 IaC & Repeatability (Terraform)](#38-iac--repeatability-terraform)
-   - [3.9 Security Layer (IAM & Security Groups)](#39-security-layer-iam--security-groups)
-   - [3.10 Backup & Recovery](#310-backup--recovery)
-4. [Security Considerations & Best Practices](#4-security-considerations--best-practices)
-5. [Backup & Recovery](#5-backup--recovery)
-6. [Tech Stack & Tools Used](#6-tech-stack--tools-used)
-7. [Step-by-Step Deployment Instructions](#7-step-by-step-deployment-instructions)
-   - [7.1 Prerequisites](#71-prerequisites)
-   - [7.2 Setup Repository](#72-setup-repository)
-   - [7.3 Initialize Terraform](#73-initialize-terraform)
-   - [7.4 Plan Infrastructure](#74-plan-infrastructure)
-   - [7.5 Apply Infrastructure](#75-apply-infrastructure)
-   - [7.6 Post-Deployment Checks](#76-post-deployment-checks)
-     - [7.6.1 EC2 & ALB](#761-ec2--alb)
-     - [7.6.2 RDS](#762-rds)
-     - [7.6.3 S3 Buckets](#763-s3-buckets)
-     - [7.6.4 Route 53 & ACM](#764-route-53--acm)
-     - [7.6.5 CloudWatch, Monitoring & Alerts](#765-cloudwatch-monitoring--alerts)
-     - [7.6.6 Optional Functional Checks](#766-optional-functional-checks)
-   - [7.7 Optional CI/CD & Monitoring Setup](#77-optional-cicd--monitoring-setup)
-   - [7.8 Destroy Infrastructure (Optional)](#78-destroy-infrastructure-optional)
-   - [7.9 Verification Tools (Optional)](#79-verification-tools-optional)
-   - [7.10 Cost Awareness (Optional)](#710-cost-awareness-optional)
-8. [Cost Considerations & Optimizations](#cost-considerations--optimizations)
-9. [Future Enhancements](#future-enhancements)
-10. [Architecture Diagram Reference](#architecture-diagram-reference)
+[![1) Real-World Problem](https://img.shields.io/badge/1-Real--World--Problem-blue?style=for-the-badge&logo=bug&logoColor=white)](#1-real-world-problem)  
+[![2) Design Objectives](https://img.shields.io/badge/2-Design--Objectives-green?style=for-the-badge&logo=terraform&logoColor=white)](#2-design-objectives)  
+[![3) Architecture Breakdown & Rationale](https://img.shields.io/badge/3-Architecture--Breakdown-orange?style=for-the-badge&logo=aws&logoColor=white)](#3-architecture-breakdown--rationale)  
+  [![3.1) Networking Layer](https://img.shields.io/badge/3.1-Networking-blue?style=for-the-badge)](#31-networking-layer-vpc--subnets)  
+  [![3.2) Compute Layer](https://img.shields.io/badge/3.2-Compute-green?style=for-the-badge)](#32-compute-layer-ec2--auto-scaling)  
+  [![3.3) Load Balancing](https://img.shields.io/badge/3.3-Load--Balancing-yellow?style=for-the-badge)](#33-load-balancing-layer-alb)  
+  [![3.4) Database Layer](https://img.shields.io/badge/3.4-Database-red?style=for-the-badge)](#34-database-layer-amazon-rds)  
+  [![3.5) Storage Layer](https://img.shields.io/badge/3.5-Storage-blue?style=for-the-badge)](#35-storage-layer-s3)  
+  [![3.6) DNS & TLS](https://img.shields.io/badge/3.6-DNS--TLS-purple?style=for-the-badge)](#36-dns--tls-route-53--acm)  
+  [![3.7) Observability](https://img.shields.io/badge/3.7-Observability-orange?style=for-the-badge)](#37-observability-cloudwatch)  
+  [![3.8) IaC & Terraform](https://img.shields.io/badge/3.8-IaC--Terraform-green?style=for-the-badge)](#38-iac--repeatability-terraform)  
+  [![3.9) Security Layer](https://img.shields.io/badge/3.9-Security-red?style=for-the-badge)](#39-security-layer-iam--security-groups)  
+  [![3.10) Backup & Recovery](https://img.shields.io/badge/3.10-Backup--Recovery-blue?style=for-the-badge)](#310-backup--recovery)
 
-
+[![4) Security Considerations & Best Practices](https://img.shields.io/badge/4-Security--Best--Practices-purple?style=for-the-badge&logo=lock&logoColor=white)](#4-security-considerations--best-practices)  
+[![5) Backup & Recovery](https://img.shields.io/badge/5-Backup--Recovery-red?style=for-the-badge&logo=aws&logoColor=white)](#5-backup--recovery)  
+[![6) Tech Stack & Tools Used](https://img.shields.io/badge/6-Tech--Stack--Tools-blue?style=for-the-badge&logo=devicon&logoColor=white)](#6-tech-stack--tools-used)  
+[![7) Step-by-Step Deployment Instructions](https://img.shields.io/badge/7-Deployment--Steps-yellow?style=for-the-badge&logo=terraform&logoColor=white)](#7-step-by-step-deployment-instructions)  
+[![8) Cost Considerations & Optimizations](https://img.shields.io/badge/Cost-Optimizations-yellow?style=for-the-badge&logo=aws&logoColor=white)](#cost-considerations--optimizations)  
+[![9) Future Enhancements](https://img.shields.io/badge/Future-Enhancements-blue?style=for-the-badge&logo=terraform&logoColor=white)](#future-enhancements)
 
 ---
 
@@ -105,6 +86,13 @@ Educational institutions handle sensitive, high-volume data (students, teachers,
 ---
 
 ![3) Architecture Breakdown & Rationale](https://img.shields.io/badge/3-Architecture--Breakdown-orange?style=for-the-badge&logo=aws&logoColor=white)
+
+- The EduManage architecture is a **3-tier design** with:  
+  1. **Presentation Layer:** ALB in public subnets.  
+  2. **Application Layer:** EC2 Auto Scaling in private subnets.  
+  3. **Database Layer:** RDS MySQL Multi-AZ in isolated subnets.  
+  4. **Storage Layer:** S3 buckets for static assets & logs.  
+  5. **Monitoring & Security:** CloudWatch, SNS, IAM, Security Groups.  
 
 ### 3.1) Networking Layer (VPC & Subnets)
 - **VPC (10.0.0.0/16):** Isolates EduManage workloads from other AWS accounts/projects. Provides CIDR space for subnets.
@@ -443,17 +431,7 @@ Provides a roadmap to take EduManage from infrastructure-only to a fully enterpr
 
 ---
 
-![Architecture](https://img.shields.io/badge/Architecture-Diagram-green?style=for-the-badge&logo=draw.io&logoColor=white)
 
-### Architecture Diagram Reference
-- The EduManage architecture is a **3-tier design** with:  
-  1. **Presentation Layer:** ALB in public subnets.  
-  2. **Application Layer:** EC2 Auto Scaling in private subnets.  
-  3. **Database Layer:** RDS MySQL Multi-AZ in isolated subnets.  
-  4. **Storage Layer:** S3 buckets for static assets & logs.  
-  5. **Monitoring & Security:** CloudWatch, SNS, IAM, Security Groups.  
-
-** For detailed architecture explanation and rationale, refer to [Section 3 – Architecture Breakdown & Rationale](#3-architecture-breakdown--rationale):**
 
 
 
