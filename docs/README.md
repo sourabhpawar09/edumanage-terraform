@@ -4,12 +4,17 @@ EduManage is a **cloud-native Student Management System** deployed on **Amazon W
 The project demonstrates how to design and implement a **production-grade 3-tier architecture** that is scalable, secure, and highly available.  
 
 This document provides a **detailed explanation** of the project, including:  
-⭐ The real-world problem it solves  
-⭐ Design objectives and goals  
-⭐ Architecture breakdown with reasoning behind each component  
-⭐ Step-by-step deployment instructions  
-⭐ Cost considerations and optimizations  
-⭐ Future enhancements for making the system enterprise-ready  
+- **The real-world problem it solves**
+- **Design objectives and goals**
+- **Architecture breakdown with reasoning behind each component**
+- **Security considerations & best practices**
+- **Backup & recovery strategy**
+- **Tech Stack & tools used**
+- **Step-by-step deployment instructions**
+- **Cost considerations and optimizations**
+- **Future enhancements for making the system enterprise-ready**
+- **Architecture diagram reference**
+
 
 
 ---
@@ -132,3 +137,25 @@ Adds visibility, proactive monitoring, and helps detect failures before users no
 Makes deployments auditable, reusable, and automation-ready.
 
 ---
+
+### 3.9) Security Layer (IAM & Security Groups)
+- **IAM Roles:** EC2 → S3 (read/write), CloudWatch logging permissions.
+- **Security Groups:** 
+  - ALB SG → Allows HTTP/HTTPS from internet.  
+  - EC2 SG → Accepts traffic only from ALB.  
+  - RDS SG → Accepts traffic only from EC2.  
+- **NACLs (Optional):** Extra subnet-level filtering.  
+- **KMS:** Encrypts RDS snapshots, S3 objects, and secrets.
+
+**Rationale:**  
+Implements defense-in-depth, least privilege, and compliance-ready design.
+
+---
+
+### 3.10) Backup & Recovery
+- **RDS Automated Backups:** Daily snapshots with retention (7–30 days).
+- **S3 Versioning + Lifecycle:** Protects against accidental deletion and optimizes storage.
+- **Terraform State:** Stored in S3 with DynamoDB locking to avoid corruption.
+
+**Rationale:**  
+Ensures disaster recovery, long-term durability, and infra reliability.
