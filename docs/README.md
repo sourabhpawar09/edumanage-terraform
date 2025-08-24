@@ -29,7 +29,7 @@ This document provides a **detailed explanation** of the project, including:
 
 
 ---
-![1) Real-World Problem](https://img.shields.io/badge/1-Real--World--Problem-red?style=for-the-badge&logo=bug&logoColor=white)
+![1) Real-World Problem](https://img.shields.io/badge/1-Real--World--Problem-blue?style=for-the-badge&logo=bug&logoColor=white)
 
 
 
@@ -44,7 +44,7 @@ Educational institutions handle sensitive, high-volume data (students, teachers,
 
 ---
 
-## 2) Design Objectives & Goals
+![2) Design Objectives](https://img.shields.io/badge/2-Design--Objectives-green?style=for-the-badge&logo=terraform&logoColor=white)
 
 **Non-Functional Objectives**
 - **High Availability:** Multi-AZ components where applicable; load balanced stateless app tier.
@@ -63,7 +63,7 @@ Educational institutions handle sensitive, high-volume data (students, teachers,
 
 ---
 
-## 3) Architecture Breakdown & Rationale
+![3) Architecture Breakdown & Rationale](https://img.shields.io/badge/3-Architecture--Breakdown-orange?style=for-the-badge&logo=aws&logoColor=white)
 
 ### 3.1) Networking Layer (VPC & Subnets)
 - **VPC (10.0.0.0/16):** Isolates EduManage workloads from other AWS accounts/projects. Provides CIDR space for subnets.
@@ -174,7 +174,7 @@ Ensures disaster recovery, long-term durability, and infra reliability.
 
 ---
 
-## 4) Security Considerations & Best Practices
+![4) Security Considerations & Best Practices](https://img.shields.io/badge/4-Security--Best--Practices-purple?style=for-the-badge&logo=lock&logoColor=white)
 
 EduManage follows **security-by-design principles** to ensure sensitive student and institutional data is protected at all times.
 
