@@ -459,7 +459,17 @@ Provides a roadmap to take EduManage from infrastructure-only to a fully enterpr
 ---
 
 
+---
 
+## 📚 References / Docs
+
+For detailed supporting documentation, diagrams, and screenshots, see the following:
+
+- [Architecture Diagram](architecture-diagram.txt) – Text-based 3-tier architecture diagram.  
+- [Deployment Steps](deployment-steps.md) – Step-by-step Terraform deployment instructions (optional separated file).  
+- [Screenshots](screenshots/) – Folder containing screenshots of deployed AWS resources.
+
+---
 
 
 
