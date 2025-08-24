@@ -67,9 +67,10 @@ This document provides a **detailed explanation** of the project, including:
    - 7.8 Destroy Infrastructure (Optional)
    - 7.9 Verification Tools (Optional)
    - 7.10 Cost Awareness (Optional)
+
 [![8) Cost Considerations & Optimizations](https://img.shields.io/badge/Cost-Optimizations-yellow?style=for-the-badge&logo=aws&logoColor=white)](#cost-considerations--optimizations) 
 
-[![9) Future Enhancements](https://img.shields.io/badge/Future-Enhancements-blue?style=for-the-badge&logo=terraform&logoColor=white)](#future-enhancements)
+[![9) Future Enhancements](https://img.shields.io/badge/Future-Enhancements-blue?style=for-the-badge&logoColor=white)](#future-enhancements)
 
 
 
