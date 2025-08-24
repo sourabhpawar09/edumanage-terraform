@@ -28,9 +28,9 @@ This document provides a **detailed explanation** of the project, including:
 
 ## Table of Contents
 
-- ![1.Real-World Problem](https://img.shields.io/badge/Design--Objectives-blue?style=flat-square)
-- ![2.Design Objectives](https://img.shields.io/badge/Design--Objectives-green?style=flat-square)
-- ![3.Architecture Breakdown & Rationale](https://img.shields.io/badge/Design--Objectives-red?style=flat-square)
+- ![1)Real-World Problem](https://img.shields.io/badge/Design--Objectives-blue?style=flat-square)
+- ![2)Design Objectives](https://img.shields.io/badge/Design--Objectives-green?style=flat-square)
+- ![3)Architecture Breakdown & Rationale](https://img.shields.io/badge/Design--Objectives-red?style=flat-square)
    - [3.1 Networking Layer (VPC & Subnets)](#31-networking-layer-vpc--subnets)
    - [3.2 Compute Layer (EC2 & Auto Scaling)](#32-compute-layer-ec2--auto-scaling)
    - [3.3 Load Balancing Layer (ALB)](#33-load-balancing-layer-alb)
