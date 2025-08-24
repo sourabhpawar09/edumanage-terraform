@@ -14,3 +14,121 @@ This document provides a **detailed explanation** of the project, including:
 
 ---
 
+## 1) Real-World Problem
+
+Educational institutions handle sensitive, high-volume data (students, teachers, classes, attendance, exams, fees) and need secure, always-available access. Traditional/on-prem systems typically suffer from:
+- Limited scalability during peaks (admissions, results).
+- Single points of failure and poor disaster recovery.
+- High operational overhead (patching, backups, hardware refresh).
+- Weak network segmentation and inconsistent security hardening.
+- Slow, error-prone provisioning without Infrastructure as Code.
+
+**EduManage** addresses these by moving to a cloud-native, 3-tier architecture on AWS with automated, repeatable provisioning using Terraform.
+
+---
+
+## 2) Design Objectives & Goals
+
+**Non-Functional Objectives**
+- **High Availability:** Multi-AZ components where applicable; load balanced stateless app tier.
+- **Scalability:** Auto Scaling for EC2; decoupled tiers.
+- **Security by Design:** Private subnets for app/DB; least-privilege Security Groups; TLS at the edge.
+- **Observability:** CloudWatch metrics/alarms and logs.
+- **Repeatability:** Full IaC with Terraform; idempotent, version-controlled deployments.
+- **Cost Awareness:** Right-size instances, minimize NAT exposure, destroy non-prod when idle.
+
+**Functional Scope (infra)**
+- Network baseline (VPC, subnets, routing, IGW/NAT).
+- Public entry via ALB → EC2 app tier.
+- Managed relational DB via RDS (Multi-AZ).
+- DNS & certificate plumbing (Route 53 + ACM).
+- Object storage for static assets/logs via S3.
+
+---
+
+## 3) Architecture Breakdown & Rationale
+
+### 3.1) Networking Layer (VPC & Subnets)
+- **VPC (10.0.0.0/16):** Isolates EduManage workloads from other AWS accounts/projects. Provides CIDR space for subnets.
+- **Public Subnets (2 AZs):** Host Application Load Balancer (ALB) and NAT Gateways. Required for internet-facing entry points.
+- **Private App Subnets (2 AZs):** Host EC2 Auto Scaling group. Prevents direct public internet access; only ALB and NAT can reach them.
+- **Private DB Subnets (2 AZs):** Dedicated for RDS. No outbound internet; accessed only from app tier.
+- **Internet Gateway:** Enables outbound internet access for public subnets.
+- **NAT Gateways:** Allow private EC2 instances to download OS updates and packages without being exposed publicly.
+- **Route Tables:** Custom public/private routing ensures each subnet only has necessary access.
+
+**Rationale:**  
+Segregated tiers improve security, fault tolerance, and scalability. NAT reduces attack surface by restricting inbound paths.
+
+---
+
+### 3.2) Compute Layer (EC2 & Auto Scaling)
+- **Launch Template:** Standardizes EC2 configuration (AMI, instance type, security groups, bootstrap scripts).
+- **Auto Scaling Group (Multi-AZ):** Ensures EC2 fleet scales dynamically during exam/admission peaks and recovers from failures.
+- **Placement in Private Subnets:** EC2s are not publicly accessible; traffic always comes via ALB.
+
+**Rationale:**  
+Decouples compute from infra, supports elasticity, ensures HA, reduces operational load.
+
+---
+
+### 3.3) Load Balancing Layer (ALB)
+- **Application Load Balancer:** Routes HTTP(S) traffic from clients → EC2 instances.
+- **HTTPS Listener (443):** Enforces TLS termination using ACM certificates.
+- **Target Group:** Maintains healthy backend EC2s, checked via health checks.
+
+**Rationale:**  
+ALB abstracts away single point of failure, adds SSL/TLS offloading, improves availability, enables blue/green if extended with CodeDeploy.
+
+---
+
+### 3.4) Database Layer (Amazon RDS)
+- **RDS MySQL (Multi-AZ):** Provides relational DB backend with automatic failover.
+- **DB Subnet Group:** Ensures DB is deployed only in isolated private subnets across AZs.
+- **Parameter/Option Groups:** Allow custom DB tuning.
+- **Security Group:** Restricts DB access to app-tier EC2s only.
+
+**Rationale:**  
+Ensures consistency, durability, fault tolerance, and compliance with HA requirements.
+
+---
+
+### 3.5) Storage Layer (S3)
+- **S3 Bucket (static assets):** Store student photos, documents, and app logs.
+- **Versioning:** Enabled to avoid accidental overwrites.
+- **Encryption (SSE-S3/KMS):** Protects sensitive data.
+
+**Rationale:**  
+Offloads static assets from EC2 → reduces cost, improves scalability, ensures durability (11 9s).
+
+---
+
+### 3.6) DNS & TLS (Route 53 + ACM)
+- **Route 53 Hosted Zone:** Maps human-readable domain → ALB DNS.
+- **ACM (Certificate Manager):** Issues free TLS certs; integrated with ALB for HTTPS.
+- **CNAME Validation:** Automated Terraform validation process.
+
+**Rationale:**  
+Delivers secure HTTPS endpoints with custom domain, critical for production-grade deployments.
+
+---
+
+### 3.7) Observability (CloudWatch)
+- **CloudWatch Alarms:** Monitors EC2 CPU, RDS storage, ALB latency.
+- **Log Groups:** Capture app and system logs.
+- **Dashboards:** Central view for operational health.
+
+**Rationale:**  
+Adds visibility, proactive monitoring, and helps detect failures before users notice.
+
+---
+
+### 3.8) IaC & Repeatability (Terraform)
+- **Provider & Backend Config:** AWS provider set to Mumbai (ap-south-1), Terraform state stored in S3/DynamoDB for team usage.
+- **Split Modules/Files:** Logical separation (`vpc.tf`, `alb.tf`, `rds.tf`, etc.) → easier management.
+- **Idempotency:** Safe re-runs, avoids drift, version-controlled infra in GitHub.
+
+**Rationale:**  
+Makes deployments auditable, reusable, and automation-ready.
+
+---
