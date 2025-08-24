@@ -28,7 +28,7 @@ This document provides a **detailed explanation** of the project, including:
 
 ## Table of Contents
 
-![Real-World Problem](https://img.shields.io/badge/1-Real--World--Problem-blue?style=for-the-badge)
+![Real-World Problem](https://img.shields.io/badge//Design--Objectives-blue?style=plastic)
 2. [Design Objectives](#2-design-objectives)
 3. [Architecture Breakdown & Rationale](#3-architecture-breakdown--rationale)
    - [3.1 Networking Layer (VPC & Subnets)](#31-networking-layer-vpc--subnets)
