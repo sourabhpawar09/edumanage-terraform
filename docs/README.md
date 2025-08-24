@@ -28,7 +28,9 @@ This document provides a **detailed explanation** of the project, including:
 ## Table of Contents
 
 [![1) Real-World Problem](https://img.shields.io/badge/1-Real--World--Problem-blue?style=for-the-badge&logo=bug&logoColor=white)](#1-real-world-problem)  
+
 [![2) Design Objectives](https://img.shields.io/badge/2-Design--Objectives-green?style=for-the-badge&logoColor=white)](#2-design-objectives)  
+
 [![3) Architecture Breakdown & Rationale](https://img.shields.io/badge/3-Architecture--Breakdown-orange?style=for-the-badge&logo=aws&logoColor=white)](#3-architecture-breakdown--rationale) 
 
    - 3.1 Networking Layer (VPC & Subnets)
@@ -43,27 +45,31 @@ This document provides a **detailed explanation** of the project, including:
    - 3.10 Backup & Recovery
 
 [![4) Security Considerations & Best Practices](https://img.shields.io/badge/4-Security--Best--Practices-purple?style=for-the-badge&logo=lock&logoColor=white)](#4-security-considerations--best-practices)  
+
 [![5) Backup & Recovery](https://img.shields.io/badge/5-Backup--Recovery-red?style=for-the-badge&logo=aws&logoColor=white)](#5-backup--recovery)  
-[![6) Tech Stack & Tools Used](https://img.shields.io/badge/6-Tech--Stack--Tools-blue?style=for-the-badge&logo=devicon&logoColor=white)](#6-tech-stack--tools-used)  
+
+[![6) Tech Stack & Tools Used](https://img.shields.io/badge/6-Tech--Stack--Tools-blue?style=for-the-badge&logo=devicon&logoColor=white)](#6-tech-stack--tools-used) 
+
 [![7) Step-by-Step Deployment Instructions](https://img.shields.io/badge/7-Deployment--Steps-yellow?style=for-the-badge&logoColor=white)](#7-step-by-step-deployment-instructions)  
-   - [7.1 Prerequisites](#71-prerequisites)
-   - [7.2 Setup Repository](#72-setup-repository)
-   - [7.3 Initialize Terraform](#73-initialize-terraform)
-   - [7.4 Plan Infrastructure](#74-plan-infrastructure)
-   - [7.5 Apply Infrastructure](#75-apply-infrastructure)
-   - [7.6 Post-Deployment Checks](#76-post-deployment-checks)
+   - 7.1 Prerequisites
+   - 7.2 Setup Repository
+   - 7.3 Initialize Terraform
+   - 7.4 Plan Infrastructure
+   - 7.5 Apply Infrastructure
+   - 7.6 Post-Deployment Checks
      - [7.6.1 EC2 & ALB](#761-ec2--alb)
      - [7.6.2 RDS](#762-rds)
      - [7.6.3 S3 Buckets](#763-s3-buckets)
      - [7.6.4 Route 53 & ACM](#764-route-53--acm)
      - [7.6.5 CloudWatch, Monitoring & Alerts](#765-cloudwatch-monitoring--alerts)
      - [7.6.6 Optional Functional Checks](#766-optional-functional-checks)
-   - [7.7 Optional CI/CD & Monitoring Setup](#77-optional-cicd--monitoring-setup)
-   - [7.8 Destroy Infrastructure (Optional)](#78-destroy-infrastructure-optional)
-   - [7.9 Verification Tools (Optional)](#79-verification-tools-optional)
-   - [7.10 Cost Awareness (Optional)](#710-cost-awareness-optional)
-8. [Cost Considerations & Optimizations](#cost-considerations--optimizations)
-9. [Future Enhancements](#future-enhancements)
+   - 7.7 Optional CI/CD & Monitoring Setup
+   - 7.8 Destroy Infrastructure (Optional)
+   - 7.9 Verification Tools (Optional)
+   - 7.10 Cost Awareness (Optional)
+[![8) Cost Considerations & Optimizations](https://img.shields.io/badge/Cost-Optimizations-yellow?style=for-the-badge&logo=aws&logoColor=white)](#cost-considerations--optimizations) 
+
+[![9) Future Enhancements](https://img.shields.io/badge/Future-Enhancements-blue?style=for-the-badge&logo=terraform&logoColor=white)](#future-enhancements)
 
 
 
