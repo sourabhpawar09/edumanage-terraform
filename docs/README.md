@@ -274,10 +274,46 @@ EduManage can be deployed end-to-end on AWS using **Terraform**. The following s
 terraform init
 ```
 
-![7.4) Plan Infrastructure](https://img.shields.io/badge/7.4-Plan--Infrastructure-blue?style=for-the-badge&logo=terraform&logoColor=white)
-
+### 7.4) Plan Infrastructure
 After initializing Terraform, the next step is to **validate and plan your infrastructure**.
 
 ```bash
 terraform plan
 ```
+
+### 7.5) Apply Infrastructure
+Once the plan is verified, apply the infrastructure changes:
+
+```bash
+terraform apply
+
+```
+
+### 7.6) Post-Deployment Checks
+
+After applying the infrastructure, perform these checks to ensure everything is deployed correctly:
+
+### 7.6.1) EC2 & ALB
+- Verify EC2 instances are **running** and part of the Auto Scaling group.
+- Check that EC2 instances are **registered with the ALB target groups**.
+- Confirm that the ALB is **routing traffic** properly.
+
+### 7.6.2) RDS
+- Ensure RDS is in **Multi-AZ deployment**.
+- Verify RDS is **accessible only from the private app subnets**.
+- Check parameter and option groups are correctly applied.
+
+### 7.6.3) S3 Buckets
+- Confirm **versioning** and **encryption** are enabled.
+- Test access permissions for EC2 and IAM roles.
+
+### 7.6.4) Route 53 & ACM
+- Validate **DNS records** for your hosted zone.
+- Confirm ACM **certificate status** is issued and attached to ALB.
+
+### 7.6.5) Optional Testing
+- Test application access via **ALB DNS** or placeholder domain.
+- Check logs in **CloudWatch** for any errors.
+
+**Rationale:**  
+Performing these post-deployment checks ensures that all components are **operational, secure, and properly configured** before moving to production.
