@@ -29,7 +29,8 @@ This document provides a **detailed explanation** of the project, including:
 
 
 ---
-<h2 style="color:#1E90FF;">1) Real-World Problem</h2>
+![Real-World Problem](https://img.shields.io/badge/1-Real--World--Problem-blue?style=for-the-badge)
+
 
 
 Educational institutions handle sensitive, high-volume data (students, teachers, classes, attendance, exams, fees) and need secure, always-available access. Traditional/on-prem systems typically suffer from:
