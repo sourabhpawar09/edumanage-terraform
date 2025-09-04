@@ -91,9 +91,8 @@
 For full deployment steps, detailed Draw.io architecture diagram, and advanced Terraform configurations, refer to the `docs` folder:
 
 - [Detailed Documentation](docs/README.md)
-- [Architecture Diagram](architecture-diagram.txt) – 3-tier architecture diagram. 
-- [Deployment Steps](deployment-steps.md) – Step-by-step Terraform deployment instructions (optional separated file).  
-- [Screenshots](screenshots/) – Folder containing screenshots of deployed AWS resources.
+- [Architecture Diagram](architecture/architecture_diagram.png) – 3-tier architecture diagram. 
+- [All Screenshots](screenshots/) – Folder containing screenshots of deployed AWS resources.
 
 ---
 
