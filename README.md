@@ -91,8 +91,7 @@
 For full deployment steps, detailed Draw.io architecture diagram, and advanced Terraform configurations, refer to the `docs` folder:
 
 - [Detailed Documentation](docs/README.md)
-- ![Architecture Diagram](architecture/architecture_diagram.png)
- – 3-tier architecture diagram.  
+- [Architecture Diagram](docs/architecture/architecture_diagram.png) – 3-tier architecture diagram 
 - [Screenshots](https://github.com/<username>/edumanage-terraform/tree/main/screenshots)
  – Folder containing screenshots of deployed AWS resources.
 
