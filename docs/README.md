@@ -466,7 +466,9 @@ Provides a roadmap to take EduManage from infrastructure-only to a fully enterpr
 For detailed supporting documentation, diagrams, and screenshots, see the following:
 
 - [Architecture Diagram](architecture/architecture_diagram.png) – 3-tier architecture diagram.  
-- [Screenshots](screenshots/) – Folder containing screenshots of deployed AWS resources.
+- [Screenshots Folder](docs/screenshots/)
+ – Folder containing screenshots of deployed AWS resources.
+
 
 ---
 ---
