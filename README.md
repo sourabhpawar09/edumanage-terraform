@@ -92,8 +92,9 @@ For full deployment steps, detailed Draw.io architecture diagram, and advanced T
 
 - [Detailed Documentation](docs/README.md)
 - [Architecture Diagram](docs/architecture/architecture_diagram.png) – 3-tier architecture diagram 
-- [Screenshots](https://github.com/<username>/edumanage-terraform/tree/main/screenshots)
- – Folder containing screenshots of deployed AWS resources.
+- [Screenshots](screenshots/)
+ – Click to view all AWS screenshots
+
 
 
 ---
